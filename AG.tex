@@ -1,0 +1,89 @@
+\documentclass[a4paper]{amsart}
+\usepackage{amsmath,amsfonts,amssymb,extarrows,amsthm}
+\usepackage{geometry}
+\usepackage{todonotes}
+\usepackage{tikz-cd}
+\geometry{left=2cm,right=4cm,top=3cm,bottom=2cm}
+\theoremstyle{definition}
+\newtheorem{exer}{Exercies}[subsection]
+\newtheorem{defn}{Definition}[subsection]
+\theoremstyle{plain}
+\newtheorem{prop}{Proposition}[subsection]
+\newtheorem{thm}{Theorem}[subsection]
+\newcommand*{\qeds}{\hfill\ensuremath{\clubsuit}}
+\DeclareMathOperator{\spec}{Spec}
+\renewcommand{\hom}{\text{Hom}}
+\newcommand{\todoin}[1]{\todo[inline, inlinewidth=5cm, noinlinepar]{#1}}
+\title{Algebraic Geometry: Private Notes}
+\begin{document}
+	\maketitle
+\section{Deformation theory}
+First, we introduce essential algebraic notion in deformation theory called \todo{infinitesimal lifting property}.
+	Let $k$ be algebraic closed field, let $A$ be a finitely generated $k$-algebra such that $\spec A$ is non-singular variety over $k$. Let $0 \to I \to B' \to B \to 0$ be an exact sequence, where $B'$ is a $k$-algebra, and $I$ is an ideal with $I^2=0$. Finally, suppose given a $k$-algebra homomorphism $f \colon A \to B$. Then there exists a $k$-algebra homomorphism $f \colon A \to B'$ making a commutative diagram
+	\[
+	\begin{tikzcd}
+		0 \ar[r] &I \ar[r]& B' \ar[r] & B \ar[r]&  0\\
+		  & & & A \ar[lu,"g",dashed] \ar[u,"f"]& 
+	\end{tikzcd}
+	\]
+	We call this result the infinitesimal lifting property for $A$. We prove this result in several steps:
+	\begin{itemize}
+		\item  First suppose that $g: A \to B'$ is a given homomorphism lifting $f$. If $g' \colon A \to B'$  is another such homomorphism, show that $\theta = g-g'$ is a $k$-derivation of $A$ into $I$, where $I$ is canonical $A$-module since $I^2 =0$.
+		\begin{proof}
+			Notice that $I/I^2$ can be viewed as sub $k$-algebra of $B \cong B'/I$ since $I$ is ideal of $B'$. $B$ is $A$-module given by $f \colon A \to B$, so $I/I^2$ is with natural $A$-module structure from $B$. Since $I^2 =0$, $I \cong I/I^2$ is naturally $A$-module. Explicitly, $A$-module structure of $I$ can be written as\[
+			\begin{aligned}
+			A \otimes_B I \to I \\
+			(a,i) \mapsto f(a) \bar{i}
+			\end{aligned}
+			\]
+			where $\bar{i}$ is the image of $i$ in $B$.
+			For all $a \in A$, we have \[
+			\pi(\theta(a)) = \pi(g-g')(a) = f(a)- f(a) =0
+			\]
+			It implies $\theta(a) \in I$. For $a, b \in A$, we have 
+			\[
+			\begin{aligned}
+			\theta(ab) &= (g-g')(ab)= g(a)g(b) - g'(a)g'(b)\\
+			& =g(a)(g'(b)- g'(b) + g(b)) - g'(a)g'(b)\\
+			& =\theta(a)g'(b)+ g(a)\theta(b)\\
+			\end{aligned}
+			\]
+			Under isomorphism $B \cong B'/I$, 
+			\[
+			\theta(a)g'(b) + g(a)\theta(b) = \theta(a) \cdot b + a \cdot \theta(b)
+			\]
+			where $\cdot$ is scalar product of $I$ as $A$-module.
+		\end{proof}
+	\item Now let $P= k[x_1, \cdots, x_n]$ be a polynomial ring over $k$ of which $A$ is a quotient, and let $J$ be the kernel. Show that there does exist a homomorphism $h \colon P \to B'$ making a commutative diagram,
+	\[
+	\begin{tikzcd}
+	0 \ar[r]& I \ar[r] & B' \ar[r] & B \ar[r] & 0\\
+	0 \ar[r] & J \ar[r] & P \ar[r] \ar[u,"h",dashed] & A\ar[u,"f"] \ar[r] & 0
+	\end{tikzcd}
+	\]
+	and show that $h$ induces an $A$-linear map $\bar{h} \colon J/J^2 \to I$.
+	\begin{proof}
+		Since $P$ is free $k$-algebra of rank $n$, it is projective object. Hence there is $k$-algebra homomorphism $h \colon P \to B'$ making such commutative diagram since in the diagram $B' \to B$ is epimorphism.
+	\end{proof}
+	\item Now use the hypothesis $\spec A$ nonsingular and theorem 8.17 to show to obtain an exact sequence
+	\[
+	0 \to J/J^2 \to \Omega_{P/k} \otimes A \to \Omega_{A/k} \to 0
+	\]
+	Show furthermore that applying the functor $\hom_A(\cdot, I)$ gives an exact sequence
+	\[
+	0 \to \hom_A(\Omega_{A/k},I) \to \hom_{P}(\Omega_{P/k},I) \to \hom_A(J/J^2,I) \to 0
+	\]
+	Let $\theta \in \hom_P(\Omega_{P/k},I)$ be an element whose image gives $ \bar{h} \in \hom_A(J/J^2,I)$. Consider $\theta$ as a derivation of $P$ to $B'$. Then let $h'= h - \theta$, and show that $h'$ is a homomorphism of $P \to B'$ such that $h'(J)=0$. Thus $h'$ induces the desired homomorphism $g \colon A \to B'$.
+	\end{itemize}
+\begin{prop}
+	Let $X$ be a scheme of finite type over $k$ algebraically closed. Suppose that for every morphism $F \colon Y \to X$ of a punctual scheme $Y$ (meaning $Y$ is the $\spec																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																													$ of a local Artin ring), finite over $k$, and for every infinitesimal thickening $Y \subseteq Y'$ with ideal sheaf of square zero, there is a lifting $g \colon Y' \to X$. Then $X$ is nonsingular.
+\end{prop}
+\begin{proof}
+	content...
+\end{proof}
+\begin{defn}
+	If $X$ is a scheme over $k$, and $A$ an Artin ring over $k$, we define a deformation of $X$ over $A$ to be a scheme $X'$, flat over $A$, together with a closed immersion $i \colon X \hookrightarrow X'$ such that the induced map $i \times_k k \colon X \to X' \times_A k$ is an isomorphism. Two such deformations $(X'_1, i_1)$ and $(X'_2, i_2)$ are equivalent if there is an isomorphism $f \colon X'_1 \to X'_2$ over $A$ compatible with $i_1$ and $i_2$, i.e., such that $i_2 = f \circ i_1$.
+\end{defn}
+\section{Deformation theory with dg-Lie algebras}
+
+\end{document}
