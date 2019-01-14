@@ -1,9 +1,9 @@
-\documentclass[a4paper]{amsart}
+\documentclass[a4paper,12pt]{amsart}
 \usepackage{amsmath,amsfonts,amssymb,extarrows,amsthm}
 \usepackage{geometry}
-\usepackage{todonotes}
 \usepackage{tikz-cd}
-\geometry{left=2cm,right=4cm,top=3cm,bottom=2cm}
+\usepackage{fourier}
+\geometry{left=2cm,right=2cm,top=3cm,bottom=2cm}
 \theoremstyle{definition}
 \newtheorem{exer}{Exercies}[subsection]
 \newtheorem{defn}{Definition}[subsection]
@@ -18,7 +18,7 @@
 \begin{document}
 	\maketitle
 \section{Deformation theory}
-First, we introduce essential algebraic notion in deformation theory called \todo{infinitesimal lifting property}.
+First, we introduce essential algebraic notion in deformation theory called infinitesimal lifting property.
 	Let $k$ be algebraic closed field, let $A$ be a finitely generated $k$-algebra such that $\spec A$ is non-singular variety over $k$. Let $0 \to I \to B' \to B \to 0$ be an exact sequence, where $B'$ is a $k$-algebra, and $I$ is an ideal with $I^2=0$. Finally, suppose given a $k$-algebra homomorphism $f \colon A \to B$. Then there exists a $k$-algebra homomorphism $f \colon A \to B'$ making a commutative diagram
 	\[
 	\begin{tikzcd}
@@ -83,6 +83,10 @@ First, we introduce essential algebraic notion in deformation theory called \tod
 \end{proof}
 \begin{defn}
 	If $X$ is a scheme over $k$, and $A$ an Artin ring over $k$, we define a deformation of $X$ over $A$ to be a scheme $X'$, flat over $A$, together with a closed immersion $i \colon X \hookrightarrow X'$ such that the induced map $i \times_k k \colon X \to X' \times_A k$ is an isomorphism. Two such deformations $(X'_1, i_1)$ and $(X'_2, i_2)$ are equivalent if there is an isomorphism $f \colon X'_1 \to X'_2$ over $A$ compatible with $i_1$ and $i_2$, i.e., such that $i_2 = f \circ i_1$.
+\end{defn}
+\section{Formal schemes}
+\begin{defn}
+	Let $X$ be a Noetherian scheme, and let $Y$ be a closed subscheme defined by ideal sheaf $\mathcal{I}$. Then we define the formal complement of $X$ along $Y$, denoted $(\hat{X}, \mathcal{O}_{\hat{X}})$ to be following ringed space. We take the topological space $Y$, and on it the sheaf of rings $\mathcal{O}_{\hat{X}} = \varprojlim \mathcal{O}_X/\mathcal{I}^n$.
 \end{defn}
 \section{Deformation theory with dg-Lie algebras}
 
